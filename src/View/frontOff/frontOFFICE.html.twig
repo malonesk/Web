@@ -1,0 +1,65 @@
+{% extends "layout.html.twig" %}
+
+
+
+{% block contenu %}
+
+	<div class="container pull-left" style="width:70%; position:relative; margin-top:5%">
+		<div class="col-lg-7 col-sm-7">
+			<table class="table table-responsive table-bordered table-striped">
+				<caption>Aquariums Disponibles</caption>
+				<thead>
+				<tr><th>nom</th><th>id</th><th>type</th><th>prix</th><th>photo</th><th>Quantité</th><th>Action</th>
+				</tr>
+				</thead>
+				<tbody>
+				{% for aquarium in data if data is not empty %}
+
+					<tr>
+						<form method="post" action="{{ path('panier.add',{id: aquarium.id}) }} ">
+						<td>{{aquarium.nom}}</td><td>{{aquarium.id}}</td><td>{{aquarium.libelle}}</td><td>{{aquarium.prix}}</td><td>
+							<img style="width:40px;height:40px" src="{{asset('images/')}}{{aquarium.photo}}" alt="image de {{aquarium.libelle}}" >
+						</td><td><input name="quantite"  type="text"  size="18" value="0" /></td><td><input type="submit" name="AjoutPanier" value="Ajouter au panier" /></td>
+						</form>
+					</tr>
+				{% endfor %}
+				<tbody>
+			</table>
+		</div>
+		</div>
+	<div class="container pull-right" style="width:30%; position:relative; margin-top:5%">
+		<div class="col-lg-5 col-sm-5">
+			<table>
+				<caption>Panier</caption>
+				<thead>
+				<tr><th>Aquarium id</th><th>prix</th><th>quantite</th><th>Supprimer</th>
+				</tr>
+				</thead>
+				<tbody>
+
+				{% for pani in panier if panier is not empty %}
+
+					<tr>
+						<td>{{pani.aquarium_id}}</td><td>{{pani.prix}}</td><td>{{ pani.quantite }}</td><td><a href="{{ path('panier.deleteArticle', {id: pani.id}) }}">Supprimer</a></td>
+					</tr>
+
+				{% endfor %}
+				<form method="post" action="{{ path('panier.valide') }} ">
+				<td>Total</td><td></td><td></td><td>{{ total }}</td>
+				<tbody>
+				</table>
+				<input name="total"  type="hidden"  size="18" value="{{ total }}" /></td>
+				<td><input type="submit" name="AjoutCommande" value="Valider la commande" /></td>
+				</form>
+		</div>
+
+	</div>
+
+{% endblock %}
+
+
+
+
+
+
+

@@ -1,0 +1,37 @@
+{% extends "layout.html.twig" %}
+{% block contenu %}
+	<div class="row">
+		{% if   app.session.get('droit') is defined and  app.session.get('droit') == 'DROITadmin' %}
+			<a href="{{ path('aquarium.add') }}"> Ajouter un aquarium </a>
+		{% endif %}
+
+		<table>
+			<caption>Recapitulatifs des Aquarium</caption>
+			<thead>
+			<tr><th>nom</th><th>id</th><th>type</th><th>prix</th><th>nom photo</th><th>photo</th>
+				{% if   app.session.get('droit') is defined and  app.session.get('droit') == 'DROITadmin' %}
+					<th>opération</th>
+				{% endif %}
+			</tr>
+			</thead>
+			<tbody>
+			{% for aquarium in data if data is not empty %}
+
+				<tr>
+					<td>{{aquarium.nom}}</td><td>{{aquarium.id}}</td><td>{{aquarium.libelle}}</td><td>{{aquarium.prix}}</td><td>
+						{{aquarium.photo}}</td><td>
+						<img style="width:40px;height:40px" src="{{asset('images/')}}{{aquarium.photo}}" alt="image de {{aquarium.libelle}}" >
+					</td>
+					{% if   app.session.get('droit') is defined and  app.session.get('droit') == 'DROITadmin' %}
+						<td>
+							<a href="{{ path('aquarium.edit', {id: aquarium.id}) }}">modifier</a>
+							<a href="{{ path('aquarium.delete', {id: aquarium.id}) }}">supprimer</a>
+						</td>
+					{% endif %}
+				</tr>
+			{% endfor %}
+			<tbody>
+		</table>
+	</div>
+{% endblock %}
+

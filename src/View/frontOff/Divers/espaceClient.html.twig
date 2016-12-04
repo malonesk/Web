@@ -1,0 +1,62 @@
+{% extends "layout.html.twig" %}
+{% block contenu %}
+    <form method="post" action="{{ path('user.validFormChangeCoo') }}">
+        <div class="row">
+
+
+                <legend>Modifier vos coordonnées  </legend>
+                <input name="id"  type="hidden" value="{{donnees.id}}" />
+                <label>Nom :
+                    <input name="nom"  type="text"  size="18" value="{{donnees.nom}}" />
+                    {% if erreurs.nom is defined %}
+                        <small class="error">{{erreurs.nom}}</small>
+                    {% endif %}
+                </label>
+
+
+
+                <label>E-mail
+                    <input name="Email"  type="text"  size="18" 	value="{{donnees.email}}"/>
+                    {% if erreurs.Email is defined %}
+                        <small class="error">{{erreurs.Email}}</small>
+                    {% endif %}
+                </label>
+                <label>Adresse
+                    <input name="adresse"  type="text"  size="18" value="{{donnees.adresse}}"/>
+                    {% if erreurs.adresse is defined %}
+                        <small class="error">{{erreurs.adresse}}</small>
+                    {% endif %}
+                </label>
+            <label>Login
+                <input name="login"  type="text"  size="18" value="{{donnees.login}}"/>
+                {% if erreurs.password is defined %}
+                    <small class="error">{{erreurs.login}}</small>
+                {% endif %}
+            </label>
+
+            <label>Mot de passe
+                <input name="password"  type="text"  size="18" value=""/>
+                {% if erreurs.password is defined %}
+                    <small class="error">{{erreurs.password}}</small>
+                {% endif %}
+            </label>
+            <label>Code postal
+                <input name="code_postal"  type="text"  size="18" value="{{donnees.code_postal}}"/>
+                {% if erreurs.code_postal is defined %}
+                    <small class="error">{{erreurs.code_postal}}</small>
+                {% endif %}
+            </label>
+            <label>Ville
+                <input name="ville"  type="text"  size="18" value="{{donnees.ville}}"/>
+                {% if erreurs.ville is defined %}
+                    <small class="error">{{erreurs.ville}}</small>
+                {% endif %}
+            </label>
+
+                <input type="hidden" id="_method" name="_method" value="put" />
+
+                <input type="submit" name="modifierUser" value="Modifier" />
+            </fieldset>
+        </div>
+    </form>
+{% endblock %}

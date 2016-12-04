@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" type="image/x-icon" href="http://www.iut-bm.univ-fcomte.fr/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>exemple MVC php</title>
+
+  <!-- Latest compiled and minified CSS -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Custom styles for this template -->
+  <link href="../../web/assets/bootstrap-3.3.7/docs/examples/carousel/carousel.css" rel="stylesheet">
+  <!-- Latest compiled and minified JavaScript -->
+</head>
+<body>
+
+{% if   app.session.get('droit') is defined and  app.session.get('droit') == 'DROITadmin' %}
+  {% include "nav_backOff.html.twig" %}
+{% elseif   app.session.get('droit') is defined and  app.session.get('droit') == 'DROITclient' %}
+  {% include "nav_frontOff.html.twig" %}
+{% else %}
+  {% include "nav_home.html.twig" %}
+{% endif%}
+
+{% block contenu %}
+  Site de vente projet S3 web IUT
+{% endblock %}
+
+
+
+<!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+<script src="../../web/assets/bootstrap-3.3.7/docs/assets/js/vendor/holder.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../../web/assets/bootstrap-3.3.7/docs/assets/js/ie10-viewport-bug-workaround.js"></script>
+</body>
+</html>
+

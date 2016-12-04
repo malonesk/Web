@@ -1,0 +1,51 @@
+<div class="navbar-wrapper">
+
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Project name</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="{{ path('aquarium.index') }}">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" type="button" aria-haspopup="true" aria-expanded="false">Mon compte<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ path('panier.showCommandes')  }}">mes commandes</a></li>
+                            <li><a href="{{ path('user.changerCoo') }}">mes coordonnées</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Panier<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                                <li><a href="{{ path('panier.index') }}">afficher le panier</a></li>
+                                <li><a href="#">rechercher un produit </a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Clients<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Gestion des clients</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="navbar-right">
+                    {% if   app.session.get('logged') is defined and  app.session.get('logged') == 1 %}
+                        <li class="name" style="color: #d58512">Connecté en tant que : {{ app.session.get('login') }}</li>
+                        <li><a href="{{ path('user.logout')  }}">Se déconnecter</a></li>
+                    {% else %}
+                        <li><a href="{{ path('user.login')  }}">Se connecter</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+</div>
